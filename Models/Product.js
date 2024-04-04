@@ -5,9 +5,7 @@ const ProductSizeSchema = new mongoose.Schema({
   quantity: Number
 });
 
-const ProductImageSchema = new mongoose.Schema({
-  image_url: String
-});
+const ProductImageSchema = new mongoose.Schema([String]);
 
 const ProductSchema = new mongoose.Schema({
   product_id: {
@@ -18,7 +16,7 @@ const ProductSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
-  images: [ProductImageSchema],
+  image_url: [ProductImageSchema],
   sizes: [ProductSizeSchema]
 });
 

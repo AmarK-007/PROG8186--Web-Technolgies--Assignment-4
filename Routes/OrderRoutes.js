@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../Models/Order'); // Order model
+const Counter = require('../Models/Counter'); // Counter model
 
 router.get('/', async (req, res) => {
     try {
@@ -20,40 +21,78 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const order = new Order(req.body);
+    const { orderdetails, order_id, user_id, ...orderData } = req.body;
+
+    if (!order_id || !user_id) {
+        return res.status(400).json({ message: "Missing required field" });
+    }
+
+    // Get the next order_id
+    const counter = await Counter.findOneAndUpdate({ _id: 'order_id' }, { $inc: { seq: 1 } }, { new: true, upsert: true });
+
+    const order = new Order({ ...orderData, order_id, user_id });
+    if (orderdetails) {
+        order.orderdetails = [];
+        for (let i = 0; i < orderdetails.length; i++) {
+            order.orderdetails.push(orderdetails[i]);
+        }
+    }
+
     try {
         const newOrder = await order.save();
-        res.status(201).json(newOrder);
+        res.status(201).json({ message: "Order created", newOrder });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
 
-router.put('/:id', getOrder, async (req, res) => {
-    Object.assign(res.order, req.body);
+router.put('/', getOrder, async (req, res) => {
+    const { orderdetails, user_id, ...orderData } = req.body;
+    const { order_id } = req.query;
+
+    if (!order_id || !user_id) {
+        return res.status(400).json({ message: "Missing required field" });
+    }
+
+    Object.assign(res.order, orderData, { order_id, user_id });
+    if (orderdetails) {
+        res.order.orderdetails = [];
+        for (let i = 0; i < orderdetails.length; i++) {
+            res.order.orderdetails.push(orderdetails[i]);
+        }
+    }
+
     try {
         const updatedOrder = await res.order.save();
-        res.json(updatedOrder);
+        res.json({ message: "Order updated", updatedOrder });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
 
-router.delete('/:id', getOrder, async (req, res) => {
-    try {
-        await res.order.remove();
-        res.json({ message: 'Deleted Order' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+router.delete('/', getOrder, async (req, res) => {
+    if (res.order) {
+        try {
+            await Order.deleteOne({ order_id: res.order.order_id });
+            res.json({ message: 'Order deleted' });
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    } else {
+        res.status(404).json({ message: 'Order not found' });
     }
 });
 
 async function getOrder(req, res, next) {
     let order;
     try {
-        order = await Order.findById(req.params.id);
+        const { order_id } = req.query;
+        if (!order_id) {
+            return res.status(400).json({ message: "Missing required field" });
+        }
+        order = await Order.findOne({ order_id: order_id });
         if (order == null) {
-            return res.status(404).json({ message: 'Cannot find order' });
+            return res.status(404).json({ message: 'Order not found' });
         }
     } catch (err) {
         return res.status(500).json({ message: err.message });
