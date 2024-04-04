@@ -1,0 +1,458 @@
+{
+	"id": "ee5d75c8-a4af-43d0-b1e4-83796a3e221f",
+	"name": "Node - Shoecart - Users API Tests",
+	"timestamp": "2024-04-04T05:54:08.544Z",
+	"collection_id": "261942-40c3482f-0f57-4c2b-97d9-45b9dfd48b85",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 31,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-04-04T05:54:06.625Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "ac40bd5c-cac4-45ac-aeb6-18663244edb2",
+			"name": "GET Request to Retrieve Users (Positive Case)",
+			"url": "http://localhost:5000/users",
+			"time": 98,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an array": true,
+				"Each user object should have required properties": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each user object should have required properties": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				98
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an array": true,
+					"Each user object should have required properties": true
+				}
+			]
+		},
+		{
+			"id": "ab2de50f-5c94-4f9c-a624-a3c9ad47898a",
+			"name": "GET Request to Retrieve Users (Positive Case - Limit)",
+			"url": "http://localhost:5000/users?limit=1",
+			"time": 94,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an array with length equal to limit": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an array with length equal to limit": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				94
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an array with length equal to limit": true
+				}
+			]
+		},
+		{
+			"id": "a4f0b173-38fb-4365-8942-f63ebb0012c3",
+			"name": "POST Request to Add User (Positive Case)",
+			"url": "http://localhost:5000/users",
+			"time": 312,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response is of type JSON": true,
+				"Response should be an object with message 'User created'": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with message 'User created'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				312
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response is of type JSON": true,
+					"Response should be an object with message 'User created'": true
+				}
+			]
+		},
+		{
+			"id": "c84f0843-2dca-4008-9f24-941f0e07b106",
+			"name": "POST Request to Add User (Negative Case - User already exists)",
+			"url": "http://localhost:5000/users?limit=1",
+			"time": 92,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with message 'Email or username already exists'": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with message 'Email or username already exists'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				92
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with message 'Email or username already exists'": true
+				}
+			]
+		},
+		{
+			"id": "d4112125-de08-426e-9b82-3e9e2474e83c",
+			"name": "POST Request to Add User (Negative Case -  Missing Required Fields)",
+			"url": "http://localhost:5000/users",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "98e51137-d1e8-4ad2-85cd-784a70a58cac",
+			"name": "PUT Request to Update User (Positive Case)",
+			"url": "http://localhost:5000/users?username=annamalai",
+			"time": 188,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with message 'User updated'": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with message 'User updated'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				188
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with message 'User updated'": true
+				}
+			]
+		},
+		{
+			"id": "120053d5-c6f3-4e45-ba9e-631157375b09",
+			"name": "PUT Request to Update User (Negative Case - User not found)",
+			"url": "http://localhost:5000/users?user_id=7",
+			"time": 93,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				93
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "39312527-336a-416a-bfa7-145628fcf03d",
+			"name": "PUT Request to Update User (Negative Case -  Missing Required Fields)",
+			"url": "http://localhost:5000/users?user_id=7",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "22a31f79-29d8-40d5-82f8-c72b4c3fc4fa",
+			"name": "DELETE Request to Remove User (Positive Case)",
+			"url": "http://localhost:5000/users?username=annamalai",
+			"time": 183,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with message 'User deleted'": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with message 'User deleted'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				183
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with message 'User deleted'": true
+				}
+			]
+		},
+		{
+			"id": "b336b9a1-28fe-49d9-92fd-2fa80c2fad4f",
+			"name": "DELETE Request to Remove User (Negative Case)",
+			"url": "http://localhost:5000/users?user_id=7",
+			"time": 91,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				91
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1160,
+	"collection": {
+		"requests": [
+			{
+				"id": "ac40bd5c-cac4-45ac-aeb6-18663244edb2",
+				"method": "GET"
+			},
+			{
+				"id": "ab2de50f-5c94-4f9c-a624-a3c9ad47898a",
+				"method": "GET"
+			},
+			{
+				"id": "a4f0b173-38fb-4365-8942-f63ebb0012c3",
+				"method": "POST"
+			},
+			{
+				"id": "c84f0843-2dca-4008-9f24-941f0e07b106",
+				"method": "POST"
+			},
+			{
+				"id": "d4112125-de08-426e-9b82-3e9e2474e83c",
+				"method": "POST"
+			},
+			{
+				"id": "98e51137-d1e8-4ad2-85cd-784a70a58cac",
+				"method": "PUT"
+			},
+			{
+				"id": "120053d5-c6f3-4e45-ba9e-631157375b09",
+				"method": "PUT"
+			},
+			{
+				"id": "39312527-336a-416a-bfa7-145628fcf03d",
+				"method": "PUT"
+			},
+			{
+				"id": "22a31f79-29d8-40d5-82f8-c72b4c3fc4fa",
+				"method": "DELETE"
+			},
+			{
+				"id": "b336b9a1-28fe-49d9-92fd-2fa80c2fad4f",
+				"method": "DELETE"
+			}
+		]
+	}
+}
