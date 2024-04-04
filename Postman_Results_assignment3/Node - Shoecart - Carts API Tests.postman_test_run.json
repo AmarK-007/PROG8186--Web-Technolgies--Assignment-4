@@ -1,0 +1,452 @@
+{
+	"id": "104c7aaa-a5b4-4999-b1ec-5b85c2924e18",
+	"name": "Node - Shoecart - Carts API Tests",
+	"timestamp": "2024-04-04T20:45:37.184Z",
+	"collection_id": "261942-5309317a-3290-4e47-803f-33f45f5f9e57",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 30,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-04-04T20:45:35.824Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "54e244e3-6240-46cc-a36b-ebc85d10d05a",
+			"name": "GET Request to Retrieve Cart Items",
+			"url": "http://localhost:5000/carts?user_id=1",
+			"time": 72,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an array": true
+				}
+			]
+		},
+		{
+			"id": "c686d429-6470-4552-8c4d-0672545d158a",
+			"name": "GET Request without User ID",
+			"url": "http://localhost:5000/carts",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "507315b7-fa2a-47ae-bc84-347e283b78cc",
+			"name": "GET Request for Non-Existent User",
+			"url": "http://localhost:5000/carts?user_id=9999",
+			"time": 68,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				68
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "e071dfa6-fbab-4937-af59-7e40ff47c294",
+			"name": "POST Request to Add Item to Cart (Positive Case)",
+			"url": "http://localhost:5000/carts",
+			"time": 152,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				152
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "e57f832d-bfa0-4356-8b4d-912fdd986265",
+			"name": "POST Request to Add Item to Cart (Negative Case)",
+			"url": "http://localhost:5000/carts",
+			"time": 3,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "6dd19137-7de5-4c1f-9bf6-edced77e50f6",
+			"name": "PUT Request to Update Cart Item (Positive Case)",
+			"url": "http://localhost:5000/carts?cart_id=1",
+			"time": 73,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				73
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "66cecead-6545-4e13-9927-67d532e6de81",
+			"name": "PUT Request to Update Cart Item (Negative Case)",
+			"url": "http://localhost:5000/carts?cart_id=1111",
+			"time": 71,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				71
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "fd42a272-c66a-4c8d-874d-de8bda30655a",
+			"name": "DELETE Request to Remove Cart Item (Positive Case)",
+			"url": "http://localhost:5000/carts?user_id=2",
+			"time": 81,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				81
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "a6f94944-217b-4c64-bc02-56c7aff068d7",
+			"name": "DELETE Request to Remove Cart Item (Negative Case)",
+			"url": "http://localhost:5000/carts?cart_id=1111",
+			"time": 70,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				70
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "b291562b-b0e2-4b20-813d-a656c0c845c6",
+			"name": "DELETE Request without Cart ID",
+			"url": "http://localhost:5000/carts",
+			"time": 3,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 597,
+	"collection": {
+		"requests": [
+			{
+				"id": "54e244e3-6240-46cc-a36b-ebc85d10d05a",
+				"method": "GET"
+			},
+			{
+				"id": "c686d429-6470-4552-8c4d-0672545d158a",
+				"method": "GET"
+			},
+			{
+				"id": "507315b7-fa2a-47ae-bc84-347e283b78cc",
+				"method": "GET"
+			},
+			{
+				"id": "e071dfa6-fbab-4937-af59-7e40ff47c294",
+				"method": "POST"
+			},
+			{
+				"id": "e57f832d-bfa0-4356-8b4d-912fdd986265",
+				"method": "POST"
+			},
+			{
+				"id": "6dd19137-7de5-4c1f-9bf6-edced77e50f6",
+				"method": "PUT"
+			},
+			{
+				"id": "66cecead-6545-4e13-9927-67d532e6de81",
+				"method": "PUT"
+			},
+			{
+				"id": "fd42a272-c66a-4c8d-874d-de8bda30655a",
+				"method": "DELETE"
+			},
+			{
+				"id": "a6f94944-217b-4c64-bc02-56c7aff068d7",
+				"method": "DELETE"
+			},
+			{
+				"id": "b291562b-b0e2-4b20-813d-a656c0c845c6",
+				"method": "DELETE"
+			}
+		]
+	}
+}

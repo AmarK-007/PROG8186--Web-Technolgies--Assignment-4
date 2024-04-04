@@ -13,6 +13,7 @@ app.use(session({
   cookie: { secure: true } // Note: secure should be true in production
 }));
 
+
 // GET request
 router.get('/', async (req, res) => {
   const { id, username, limit } = req.query;
@@ -107,12 +108,8 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ username });
 
-    if (!user) {
-      return res.status(400).json({ status: false, message: 'Invalid username.' });
-    }
-
-    if (password !== user.password) {
-      return res.status(400).json({ status: false, message: 'Invalid password.' });
+    if (!user || password !== user.password) {
+      return res.status(400).json({ status: false, message: 'Invalid username or password.' });
     }
 
     req.session.loggedin = true; // Set the session
@@ -125,7 +122,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout route
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   if (!req.session.loggedin) {
     return res.json({ status: false, message: 'No active session found. Please login first.' });
   }

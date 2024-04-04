@@ -8,8 +8,9 @@ app.use(session({
   secret: 'a3cJ9#sD2$Fg5@1Kl8&7Zn6%Qx4',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Note: secure should be true in production
+  cookie: { secure: true } // Note: secure should be true in production
 }));
+
 
 mongoose.connect('mongodb+srv://amark7:Amar_21288@clusternew.2n7ybay.mongodb.net/shoecart?retryWrites=true&w=majority&appName=Clusternew')
     .then(() => console.log("Connected to MongoDB"))

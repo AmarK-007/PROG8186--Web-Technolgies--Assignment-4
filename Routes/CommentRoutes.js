@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Comment = require('../Models/Comment'); // Comment model
+const Counter = require('../Models/Counter'); // Counter model
 
 router.get('/', async (req, res) => {
     try {
@@ -20,37 +21,90 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const comment = new Comment({
-        product_id: req.body.product_id,
-        user_id: req.body.user_id,
-        rating: req.body.rating,
-        image_url: req.body.image_url,
-        comment: req.body.comment
-    });
     try {
-        const newComment = await comment.save();
+        const { product_id, user_id, comment } = req.body;
+
+        // Check if all required fields are provided
+        if (!product_id || !user_id || !comment || !req.body.rating || !req.body.image_url) {
+            return res.status(400).json({ message: 'Unable to create comment. Data is incomplete.' });
+        }
+
+        // Get the next comment_id
+        const counter = await Counter.findByIdAndUpdate(
+            { _id: 'commentId' },
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true }
+        );
+
+        const newComment = new Comment({
+            comment_id: counter.seq,
+            product_id,
+            user_id,
+            rating: req.body.rating,
+            image_url: req.body.image_url,
+            comment
+        });
+
+        await newComment.save();
         res.status(200).json({ message: "Comment created.", newComment });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
 
-router.put('/:id', getComment, async (req, res) => {
-    res.comment.rating = req.body.rating;
-    res.comment.image_url = req.body.image_url;
-    res.comment.comment = req.body.comment;
+router.put('/', async (req, res) => {
+    const { user_id, product_id, rating, image_url, comment, comment_id } = req.body;
+
+    // Check if all required fields are provided
+    if (!user_id || !product_id || !rating || !comment) {
+        return res.status(400).json({ message: 'Missing required field.' });
+    }
+
     try {
-        const updatedComment = await res.comment.save();
-        res.json(updatedComment);
+        let commentToUpdate;
+
+        if (comment_id) {
+            commentToUpdate = await Comment.findOne({ comment_id: comment_id });
+        } else {
+            commentToUpdate = await Comment.findOne({ user_id, product_id });
+        }
+
+        if (!commentToUpdate) {
+            return res.status(404).json({ message: 'Comment not found.' });
+        }
+
+        commentToUpdate.rating = rating;
+        commentToUpdate.image_url = image_url;
+        commentToUpdate.comment = comment;
+
+        const updatedComment = await commentToUpdate.save();
+        res.json({ message: "Comment updated.", updatedComment });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
 
-router.delete('/:id', getComment, async (req, res) => {
+router.delete('/', async (req, res) => {
     try {
-        await res.comment.remove();
-        res.json({ message: 'Comment deleted' });
+        const comment_id = req.query.comment_id;
+        const product_id = req.query.product_id;
+        const user_id = req.query.user_id;
+        let query = {};
+
+        if (comment_id) {
+            query.comment_id = comment_id;
+        } else if (product_id && user_id) {
+            query.product_id = product_id;
+            query.user_id = user_id;
+        } else {
+            return res.status(400).json({ message: 'Comment ID or User ID and Product ID are missing.' });
+        }
+
+        const result = await Comment.deleteMany(query);
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Comment not found.' });
+        }
+        res.json({ message: 'Comments deleted', deletedCount: result.deletedCount });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

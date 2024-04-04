@@ -1,0 +1,538 @@
+{
+	"id": "9cf0637e-517a-4b67-9e22-4b71b119e654",
+	"name": "Node - Shoecart - Comments API Tests",
+	"timestamp": "2024-04-04T20:27:15.387Z",
+	"collection_id": "261942-bdabbf12-895c-4935-8bf8-dfd5d16fcb37",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 36,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-04-04T20:27:13.530Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d402ddaf-3f79-4f7a-8336-e50fadb60a32",
+			"name": "GET Request with Limit",
+			"url": "http://localhost:5000/comments?product_id=1&limit=5",
+			"time": 72,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an array with maximum 5 comments": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an array with maximum 5 comments": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an array with maximum 5 comments": true
+				}
+			]
+		},
+		{
+			"id": "1645e44d-0c6b-4641-bdf1-3a3cadcce3d8",
+			"name": "GET Request without Limit",
+			"url": "http://localhost:5000/comments?product_id=1",
+			"time": 67,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an array": true
+				}
+			]
+		},
+		{
+			"id": "b546569d-e06a-48c2-9743-013ceb9c8a53",
+			"name": "GET Request without Product ID",
+			"url": "http://localhost:5000/comments",
+			"time": 3,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "6838ed6f-dfb1-42d1-9b12-199522cf1a39",
+			"name": "GET Request for Non-Existent Product",
+			"url": "http://localhost:5000/comments?product_id=9999",
+			"time": 69,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				69
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "d845f394-516a-48fc-bce6-3721852cdbb9",
+			"name": "GET Request with Invalid Limit",
+			"url": "http://localhost:5000/comments?product_id=1&limit=abc",
+			"time": 10,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Status code is 500": true,
+				"Response is of type JSON": true,
+				"Check error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 500": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status code is 500": true,
+					"Response is of type JSON": true,
+					"Check error message": true
+				}
+			]
+		},
+		{
+			"id": "f57414bc-8c04-41a2-924c-480e8f2c6043",
+			"name": "POST Request (Positive Case)",
+			"url": "http://localhost:5000/comments",
+			"time": 157,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				157
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "7f75f9b8-475e-4fd7-8136-2dcf67775fb2",
+			"name": "POST Request (Negative Case)",
+			"url": "http://localhost:5000/comments",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "31e09b62-1670-481c-81f4-cda0c2b7e988",
+			"name": "PUT Request (Positive Case)",
+			"url": "http://localhost:5000/comments",
+			"time": 138,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				138
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "4a32f1a5-ad3c-4ad4-82cd-65332c8dd1bb",
+			"name": "PUT Request (Negative Case)",
+			"url": "http://localhost:5000/comments",
+			"time": 65,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				65
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "aebbbe1c-13c6-4cfc-aac1-bc622d6868b0",
+			"name": "DELETE Request (Positive Case)",
+			"url": "http://localhost:5000/comments?product_id=1&user_id=1",
+			"time": 73,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is of type JSON": true,
+				"Response should be an object with success message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with success message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				73
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is of type JSON": true,
+					"Response should be an object with success message": true
+				}
+			]
+		},
+		{
+			"id": "6ed73b88-34fb-4d6a-8bbb-2ab84b250ab3",
+			"name": "DELETE Request (Negative Case)",
+			"url": "http://localhost:5000/comments?comment_id=1111",
+			"time": 66,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				66
+			],
+			"allTests": [
+				{
+					"Status code is 404": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		},
+		{
+			"id": "8ba5e547-3c0d-4e09-aaa2-b877703793ef",
+			"name": "DELETE Request without Comment ID",
+			"url": "http://localhost:5000/comments",
+			"time": 3,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400": true,
+				"Response is of type JSON": true,
+				"Response should be an object with error message": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be an object with error message": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status code is 400": true,
+					"Response is of type JSON": true,
+					"Response should be an object with error message": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 727,
+	"collection": {
+		"requests": [
+			{
+				"id": "d402ddaf-3f79-4f7a-8336-e50fadb60a32",
+				"method": "GET"
+			},
+			{
+				"id": "1645e44d-0c6b-4641-bdf1-3a3cadcce3d8",
+				"method": "GET"
+			},
+			{
+				"id": "b546569d-e06a-48c2-9743-013ceb9c8a53",
+				"method": "GET"
+			},
+			{
+				"id": "6838ed6f-dfb1-42d1-9b12-199522cf1a39",
+				"method": "GET"
+			},
+			{
+				"id": "d845f394-516a-48fc-bce6-3721852cdbb9",
+				"method": "GET"
+			},
+			{
+				"id": "f57414bc-8c04-41a2-924c-480e8f2c6043",
+				"method": "POST"
+			},
+			{
+				"id": "7f75f9b8-475e-4fd7-8136-2dcf67775fb2",
+				"method": "POST"
+			},
+			{
+				"id": "31e09b62-1670-481c-81f4-cda0c2b7e988",
+				"method": "PUT"
+			},
+			{
+				"id": "4a32f1a5-ad3c-4ad4-82cd-65332c8dd1bb",
+				"method": "PUT"
+			},
+			{
+				"id": "aebbbe1c-13c6-4cfc-aac1-bc622d6868b0",
+				"method": "DELETE"
+			},
+			{
+				"id": "6ed73b88-34fb-4d6a-8bbb-2ab84b250ab3",
+				"method": "DELETE"
+			},
+			{
+				"id": "8ba5e547-3c0d-4e09-aaa2-b877703793ef",
+				"method": "DELETE"
+			}
+		]
+	}
+}

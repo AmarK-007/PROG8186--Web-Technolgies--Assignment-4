@@ -1,0 +1,175 @@
+{
+	"id": "a6e23f3d-6b98-4273-b3b6-29e658140ffd",
+	"name": "Node - Shoecart - Logout API Tests",
+	"timestamp": "2024-04-04T08:48:29.933Z",
+	"collection_id": "261942-f3dea7af-98a9-431d-8156-2557e252aad9",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 13,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-04-04T08:48:29.067Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "7c4e6346-5614-49f2-8e9f-56c285c83333",
+			"name": "POST Request to Login (Positive Case)",
+			"url": "http://localhost:5000/users/login",
+			"time": 94,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Response is of type JSON": true,
+				"Login successful": true,
+				"Response contains user details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Login successful": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response contains user details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				94
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Response is of type JSON": true,
+					"Login successful": true,
+					"Response contains user details": true
+				}
+			]
+		},
+		{
+			"id": "7ff818f2-cd77-4cba-89ab-310f19407402",
+			"name": "GET Request to Logout (Positive Case)",
+			"url": "http://localhost:5000/users/logout",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Response is of type JSON": true,
+				"Logout successful": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Logout successful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Response is of type JSON": true,
+					"Logout successful": true
+				}
+			]
+		},
+		{
+			"id": "38a8cb3a-be9d-4ebb-bf85-14379125e8e4",
+			"name": "GET Request to Logout (Negative Case)",
+			"url": "http://localhost:5000/users/logout",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response time is less than 500ms": true,
+				"Response is of type JSON": true,
+				"Logout unsuccessful": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 500ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is of type JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Logout unsuccessful": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response time is less than 500ms": true,
+					"Response is of type JSON": true,
+					"Logout unsuccessful": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 105,
+	"collection": {
+		"requests": [
+			{
+				"id": "7c4e6346-5614-49f2-8e9f-56c285c83333",
+				"method": "POST"
+			},
+			{
+				"id": "7ff818f2-cd77-4cba-89ab-310f19407402",
+				"method": "GET"
+			},
+			{
+				"id": "38a8cb3a-be9d-4ebb-bf85-14379125e8e4",
+				"method": "GET"
+			}
+		]
+	}
+}
